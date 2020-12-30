@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import model.entities.Board;
@@ -14,6 +15,7 @@ public class Connect4Program {
 		
 		board.zerarTabuleiro();
 		board.exibirTabuleiro();
+		
 
 		while (board.getJogador() != 0) {
 			System.out.print(board.getJogador() != 0 ? "Jogador "+ board.getJogador() : "Jogador "+ board.getJogador());
@@ -28,6 +30,9 @@ public class Connect4Program {
 					erro = board.colocarPedra(coluna, board.getJogador());
 				} catch (DomainException e) {
 					System.out.println(e.getMessage());
+				} catch (InputMismatchException e) {
+					System.out.println("Digite a coluna (0 a 7)");
+					sc.next();
 				}
 			}
 			
